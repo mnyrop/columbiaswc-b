@@ -13,7 +13,7 @@ __Instructors:__
 __Helpers:__
 - Jochen Weber –
 - Parixit Davé –
-- Yanchen Liu – yl3063@columbia.edu
+- Yanchen Liu
 
 # Contents
 - [Schedule](#schedule)
