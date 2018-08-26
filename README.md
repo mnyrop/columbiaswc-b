@@ -11,8 +11,8 @@ __Instructors:__
 - Marii Nyröp – m.nyrop@columbia.edu | [@mnyrop](https://github.com/mnyrop) | [marii.info](http://marii.info)
 
 __Helpers:__
-- Jochen Weber –
-- Parixit Davé –
+- Jochen Weber
+- Parixit Davé
 - Yanchen Liu
 
 # Contents
