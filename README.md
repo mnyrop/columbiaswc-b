@@ -962,11 +962,14 @@ __Setup resources:__
 - What happens when I call a function?
 
 #### Notes:
-- Define a function with
+- Define a __function__ with
   ```py
   def function_name(parameter):
     # do or return something
   ```
+- Document functions with __doctrings__ `'''Example'''`
+- Utilize parameter __defaults__
+- Use `help(function_name)` to look at the documentation for a function
 
 ### Try:
 - [ ] Define a function for converting Fahrenheit to Celsius
@@ -1104,7 +1107,67 @@ __Setup resources:__
   ```py
   help(offset_mean)
   ```
+  
+- [ ] Try using `numpy.loadtxt()` without labelling the filename with `fname`. Does it work?
+  ```py
+  numpy.loadtxt('inflammation-01.csv', delimiter=',')
+  ```
+  
+- [ ] Try using `numpy.loadtxt()` without labelling the `delimiter`. Does it work?
+  ```py
+  numpy.loadtxt('inflammation-01.csv', ',')
+  ```
+  
+- [ ] Redefine `offset_mean` to have a default `target_mean_value`
+  ```py
+  def offset_mean(data, target_mean_value=0.0):
+    '''Return a new array containing the original data with its mean offset
+       to match the desired value (0 by default)
+    Example: offset_mean([1, 2, 3], 0) => [-1, 0, 1]```
+  ```
+  
+- [ ] Call the new version of `offset_mean` with two parameters, as before
+  ```py
+  test_data = numpy.zeros((2, 2))
+  print(offset_data(test_data, 3))
+  ```
+  
+- [ ] Call the new version of `offset_mean` with only one parameter (the data) on a new set
+  ```py
+  more_data = 5 + numpy.zeros((2,2))
+  print('data before offset:')
+  print(more_data)
+  print('offset data:')
+  print(offset_mean(more_data))
+  ```
+  
+- [ ] Write a new function with multiple defaults
+  ```py
+  def display(a=1, b=2, c=3):
+    print('a:', a, 'b:', b, 'c:', c)
+    
+  print('no parameters:')
+  display()
+  print('one parameter:')
+  display(55)
+  print('two parameters:')
+  display(55, 66)
+  ```
+  
+- [ ] Try by explicitly setting the value of `c`
+  ```py
+  print('only setting the value of c:'
+  display(c=77)
+  ```
 
+- [ ] Look carefully at the documentation for `numpy.loadtxt` and its defaults. Notice that `fname` does not have a default (a specific filename is required) and eight other parameters that do have defaults (can be omitted)
+  ```py
+  help(numpy.loadtxt)
+  ```
+- [ ] Try running `numpy.loadtxt` without labelling the `delimiter` again. Without the label, what value does the function think `','` is for?
+  ```py
+  numpy.loadtxt('inflammation-01.csv', ',')
+  ```
 
 ## Errors and Exceptions
 
