@@ -854,7 +854,7 @@ __Setup resources:__
   if (a > 1) and (b == 5):
     # do something
   ```
-- `True` and `False` are __booleans__
+- `True` and `False` have the data type __boolean__. They are the only __booleans__.
 
 #### Try:
 
@@ -903,6 +903,56 @@ __Setup resources:__
 
 #### Activity
 
+- [ ] Use conditionals to check for suspicious features in the inflammation data. Start by checking the maximum inflammation at the beginning (on day 0) and in the middle (day 20) of the study to see if they're equal to their corresponding day numbers.
+  ```py
+  max_inflammation_0 = numpy.max(data, axis=0)[0]
+  max_inflammation_20 = numpy.max(data, axis=0)[20]
+
+  if max_inflammation_0 == 0 and max_inflammation_20 == 20:
+    print('Suspicious looking maxima!')
+  ```
+
+- [ ] Also check if a healthy person snuck into the data set by looking for minima per day that were all zero
+  ```py
+  elif numpy.sum(numpy.min(data, axis=0)) == 0:
+    print('Minima add up to zero!')
+  ```
+
+- [ ] Lastly, add an else to print if everything looks okay
+  ```py
+  else:
+    print('Seems OK!')
+  ```
+
+- [ ] Run the whole conditional with `inflammation-01.csv`
+  ```py
+  data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
+
+  max_inflammation_0 = numpy.max(data, axis=0)[0]
+  max_inflammation_20 = numpy.max(data, axis=0)[20]
+
+  if max_inflammation_0 == 0 and max_inflammation_20 == 20:
+    print('Suspicious looking maxima!')
+  elif numpy.sum(numpy.min(data, axis=0)) == 0:
+    print('Minima add up to zero!')
+  else:
+    print('Seems OK!')
+  ```
+
+- [ ] And again with `inflammation-03.csv`
+  ```py
+  data = numpy.loadtxt(fname='inflammation-03.csv', delimiter=',')
+
+  max_inflammation_0 = numpy.max(data, axis=0)[0]
+  max_inflammation_20 = numpy.max(data, axis=0)[20]
+
+  if max_inflammation_0 == 0 and max_inflammation_20 == 20:
+    print('Suspicious looking maxima!')
+  elif numpy.sum(numpy.min(data, axis=0)) == 0:
+    print('Minima add up to zero!')
+  else:
+    print('Seems OK!')
+  ```
 
 ## Creating Functions
 
@@ -911,7 +961,48 @@ __Setup resources:__
 - What’s the difference between defining and calling a function?
 - What happens when I call a function?
 
+#### Notes:
+- Define a function with
+  ```py
+  def function_name(parameter):
+    # do or return something
+  ```
 
+### Try:
+- [ ] Define a function for converting Fahrenheit to Celsius
+  ```py
+  def fahr_to_celsius(temp):
+    return ((temp - 32) * (5/9))
+  ```
+
+- [ ] Run the function you defined
+  ```py
+  fahr_to_celsius(32)
+  ```
+
+- [ ] Call the function and print it
+  ```py
+  print('freezing point of water:', fahr_to_celsius(32), 'C')
+  print('boiling point of water:', fahr_to_celsius(212), 'C')
+  ```
+
+- [ ] Define a new function to convert Celsius to Kelvin
+  ```py
+  def celsius_to_kelvin(temp_c):
+    return temp_c + 273.15
+
+  print('freezing point of water in Kelvin:', celsius_to_kelvin(0.0))
+  ```
+
+- [ ] Use our existing conversion functions to define one for Fahrenheit to Kelvin
+  ```py
+  def fahr_to_kelvin(temp_f):
+    temp_c = fahr_to_celsius(temp_f)
+    temp_k = celsius_to_kelvin(temp_c)
+    return temp_k
+
+  print('boiling point of water in kelvin:', fahr_to_kelvin(212.0))
+  ```
 
 
 
