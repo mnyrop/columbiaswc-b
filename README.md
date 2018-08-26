@@ -177,9 +177,6 @@ __Setup resources:__
 
 
 
-
-
-
 ## Pipes and Filters
 
 
@@ -187,13 +184,96 @@ __Setup resources:__
 - How can I combine existing commands to do new things?
 
 
+#### Notes:
+- Redirect output to a file with `command > filepath`
+- Use pipes `|` to chain output between commands
+- `cat` to display contents
+- `head` to display first 10 lines
+- `tail` to display last 10 lines
+- `sort` to sort alphabetically, `sort -n` to sort numerically
+- `wc` to count lines, words, and characters
 
+#### Try:
+- [ ] Make sure you are in `data-shell` using `pwd` and `cd` if necessary
+- [ ] See what's in `molecules` with `ls molecules`
+- [ ] Change directory into `molecules` and run a word count on the `.pdb` files with `cd molecules` and `wc *.pdb`
+- [ ] Only count the lines with `wc -l *.pdb`
+- [ ] Output the results to a file using the `>` symbol `wc -l *.pdb > lengths.txt`
+- [ ] Check that `lengths.txt` was created with `ls`
+- [ ] Print out the contents of the file with `cat lengths.txt`
+- [ ] Sort the contents of the file with the `-n` flag (sorts numerically instead of alphabetically) `sort -n lengths.txt`
+- [ ] Redirect the sorted results to a new file `sort -n lengths.txt > sorted-lengths.txt`
+- [ ] Print out the first sorted line `head -n 1 sorted-lengths.txt`
+
+#### Activity: 
+- [ ] `cd` into `north-pacific-gyre/2012-07-03`
+- [ ] Get a line count on the `.txt` files `wc -l *.txt`. All the files should be the same length. Are they?
+- [ ] Check to see if any files are larger than 300 lines `wc -l *.txt | sort -n | tail -n 5`
+- [ ] Find other out of place files ending in 'Z' (they should be 'A' or 'B') `ls *Z.txt`
 
 ## Loops
 
 
 #### Questions:
 - How can I perform the same actions on many different files?
+
+#### Notes:
+- Use a variable with $variable-name or ${variable-name}
+- Indent your for loop
+
+
+#### Try:
+- [ ] Move into `~/Desktop/data-shell/creatures` and run `ls`
+- [ ] Try creating backups of the `.dat` files with `cp *.dat original-*.dat`. What happens?
+- [ ] Try using a loop instead, and print the beginning of the file instead of copying it just yet
+      ```sh
+      for filename in basilisk.dat unicorn.dat
+      do
+        head -n 3 $filename
+      done
+      ```
+- [ ] Try rewriting the for loop with a wildcard pattern and actually copy the files
+      ```sh
+      for filename in *.dat
+      do
+        cp $filename original-$filename
+      end
+      ```
+
+#### Activity:
+- [ ] Move back into `~/Desktop/data-shell/north-pacific-gyre/2012-07-03` 
+- [ ] Start a new for loop for the backing up the correct data (starting with 'NENE' and ending in 'A' or 'B' .txt), outputting each file to the console.
+      ```sh
+      for datafile in NENE*[AB].txt
+      do
+        echo $datafile
+      done
+      ```
+- [ ] Modify the loop to print the current datafile and the name it will output as after running the `goostats` program
+  ```sh
+  for datafile in NENE*[AB].txt
+  do
+    echo $datafile stats-$datafile
+  end
+  ```
+  
+- [ ] Rewrite the loop and actually run the `goostats` program on each file, exporting the results to a new file `stats-$filename`
+  ```sh
+  for datafile in NENE*[AB].txt
+  do
+    bash goostats $datafile stats-#datafile
+  done
+  ```
+  
+- [ ] One last time, rewrite the loop to run `goostats` and log useful output as it runs to the console
+  ```sh
+  for datafile in NENE*[AB].txt
+  do
+    echo $datafile
+    bash goostats $datafile stats-$datafile
+  end
+  ```
+
 
 
 
