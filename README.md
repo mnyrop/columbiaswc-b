@@ -1004,6 +1004,106 @@ __Setup resources:__
   print('boiling point of water in kelvin:', fahr_to_kelvin(212.0))
   ```
 
+#### Activity:
+- [ ] Turn the inflammation plotting analysis into a reusable function:
+  ```py
+  def analyze(filename):
+    data = numpy.loadtxt(fname=filename, delimiter=',')
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
+
+    axes1 = fig.add_subplot(1, 3, 1)
+    axes2 = fig.add_subplot(1, 3, 2)
+    axes3 = fig.add_subplot(1, 3, 3)
+
+    axes1.set_ylabel('average')
+    axes1.plot(numpy.mean(data, axis=0))
+
+    axes2.set_ylabel('max')
+    axes2.plot(numpy.max(data, axis=0))
+
+    axes3.set_ylabel('min')
+    axes3.plot(numpy.min(data, axis=0))
+
+    fig.tight_layout()
+    matplotlib.pyplot.show()
+  ```
+
+- [ ] Write a fuction to detect problems in the data
+  ```py
+  def detect_problems(filename):
+    data = numpy.loadtxt(fname=filename, delimiter=',')
+
+    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
+      print('Suspicious looking maxima!')
+    elif numpy.sum(numpy.min(data, axis=0)) == 0:
+      print('Minima add up to zero!')
+    else:
+      print('Seems OK!')
+  ```
+
+- [ ] Put the functions `analyze` and `detect_problems` together in a loop that goes through the first 3 of the inflammation files
+  ```py
+  filenames = sorted(glob.glob('inflammation*.csv'))
+
+  for f in filenames[:3]:
+    print(f)
+    analyze(f)
+    detect_problems(f)
+  ```
+- [ ] Write a function to offset the mean to a user-defined value
+  ```py
+  def offset_mean(data, target_mean_value):
+    return (data - numpy.mean(data)) + target_mean_value
+  ```
+
+- [ ] Test the function on a small sample set of data to make sure it does what we'd expect
+  ```py
+  z = numpy.zeros((2,2
+  print(z)
+  print(offset_mean(z, 3))
+  ```
+
+- [ ] Test `offset_mean` on the real inflammation data
+  ```py
+  data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
+  print(offset_mean(data, 0))
+  ```
+  
+- [ ] Write some checks to see if the result is feasible
+  ```py
+  print('original min, mean, and max are:', numpy.min(data), numpy.mean(data), numpy.max(data))
+  offset_data = offset_mean(data, 0)
+  print('min, mean, and max of offset data are:', numpy.min(offset_data), numpy.mean(offset_data), numpy.max(offset_data))
+  ```
+- [ ] Check to make sure the standard deviation hasn't changed
+  ```py
+  print('std dev before and after:', numpy.std(data), numpy.std(offset_data))
+  ```
+- [ ] Make a more precise check by outputing the difference in standard deviations
+  ```py
+  print('difference in standard deviations before and after:', numpy.std(data) - numpy.std(offset_data))
+  ```
+- [ ] Add documentation to explain the function with `# comments`
+  ```py
+  # offset_mean(data, target_mean_value):
+  # return a new array containing the original data with its mean offset to match the desired value
+  def offset_mean(data, target_mean_value):
+    return (data - numpy.mean(data)) + target_mean_value
+  ```
+  
+- [ ] Redo the documentation with multiline __docstring__ `'''`
+  ```py
+  def offset_mean(data, target_mean_value):
+    '''Return a new array containing the original data
+      with its mean offset to match the desired value.
+     Example: offset_mean([1, 2, 3], 0) => [-1, 0, 1]'''
+    return (data - numpy.mean(data)) + target_mean_value
+  ```
+  
+- [ ] Show the docstring with
+  ```py
+  help(offset_mean)
+  ```
 
 
 ## Errors and Exceptions
