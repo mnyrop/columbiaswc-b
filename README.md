@@ -205,7 +205,7 @@ __Setup resources:__
 - [ ] Redirect the sorted results to a new file `sort -n lengths.txt > sorted-lengths.txt`
 - [ ] Print out the first sorted line `head -n 1 sorted-lengths.txt`
 
-#### Activity: 
+#### Activity:
 - [ ] `cd` into `north-pacific-gyre/2012-07-03`
 - [ ] Get a line count on the `.txt` files `wc -l *.txt`. All the files should be the same length. Are they?
 - [ ] Check to see if any files are larger than 300 lines `wc -l *.txt | sort -n | tail -n 5`
@@ -241,7 +241,7 @@ __Setup resources:__
       ```
 
 #### Activity:
-- [ ] Move back into `~/Desktop/data-shell/north-pacific-gyre/2012-07-03` 
+- [ ] Move back into `~/Desktop/data-shell/north-pacific-gyre/2012-07-03`
 - [ ] Start a new for loop for the backing up the correct data (starting with 'NENE' and ending in 'A' or 'B' .txt), outputting each file to the console.
       ```sh
       for datafile in NENE*[AB].txt
@@ -256,7 +256,7 @@ __Setup resources:__
     echo $datafile stats-$datafile
   end
   ```
-  
+
 - [ ] Rewrite the loop and actually run the `goostats` program on each file, exporting the results to a new file `stats-$filename`
   ```sh
   for datafile in NENE*[AB].txt
@@ -264,7 +264,7 @@ __Setup resources:__
     bash goostats $datafile stats-#datafile
   done
   ```
-  
+
 - [ ] One last time, rewrite the loop to run `goostats` and log useful output as it runs to the console
   ```sh
   for datafile in NENE*[AB].txt
@@ -1151,7 +1151,7 @@ __Setup resources:__
   data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
   print(offset_mean(data, 0))
   ```
-  
+
 - [ ] Write some checks to see if the result is feasible
   ```py
   print('original min, mean, and max are:', numpy.min(data), numpy.mean(data), numpy.max(data))
@@ -1173,7 +1173,7 @@ __Setup resources:__
   def offset_mean(data, target_mean_value):
     return (data - numpy.mean(data)) + target_mean_value
   ```
-  
+
 - [ ] Redo the documentation with multiline __docstring__ `'''`
   ```py
   def offset_mean(data, target_mean_value):
@@ -1182,22 +1182,22 @@ __Setup resources:__
      Example: offset_mean([1, 2, 3], 0) => [-1, 0, 1]'''
     return (data - numpy.mean(data)) + target_mean_value
   ```
-  
+
 - [ ] Show the docstring with
   ```py
   help(offset_mean)
   ```
-  
+
 - [ ] Try using `numpy.loadtxt()` without labelling the filename with `fname`. Does it work?
   ```py
   numpy.loadtxt('inflammation-01.csv', delimiter=',')
   ```
-  
+
 - [ ] Try using `numpy.loadtxt()` without labelling the `delimiter`. Does it work?
   ```py
   numpy.loadtxt('inflammation-01.csv', ',')
   ```
-  
+
 - [ ] Redefine `offset_mean` to have a default `target_mean_value`
   ```py
   def offset_mean(data, target_mean_value=0.0):
@@ -1205,13 +1205,13 @@ __Setup resources:__
        to match the desired value (0 by default)
     Example: offset_mean([1, 2, 3], 0) => [-1, 0, 1]```
   ```
-  
+
 - [ ] Call the new version of `offset_mean` with two parameters, as before
   ```py
   test_data = numpy.zeros((2, 2))
   print(offset_data(test_data, 3))
   ```
-  
+
 - [ ] Call the new version of `offset_mean` with only one parameter (the data) on a new set
   ```py
   more_data = 5 + numpy.zeros((2,2))
@@ -1220,12 +1220,12 @@ __Setup resources:__
   print('offset data:')
   print(offset_mean(more_data))
   ```
-  
+
 - [ ] Write a new function with multiple defaults
   ```py
   def display(a=1, b=2, c=3):
     print('a:', a, 'b:', b, 'c:', c)
-    
+
   print('no parameters:')
   display()
   print('one parameter:')
@@ -1233,7 +1233,7 @@ __Setup resources:__
   print('two parameters:')
   display(55, 66)
   ```
-  
+
 - [ ] Try by explicitly setting the value of `c`
   ```py
   print('only setting the value of c:'
@@ -1255,7 +1255,11 @@ __Setup resources:__
 - How does Python report errors?
 - How can I handle errors in Python programs?
 
-
+#### Try:
+- [ ] Write out the following function, which has an intentional error:
+  ```py
+  # This
+  ```
 
 
 ## Defensive Programming
